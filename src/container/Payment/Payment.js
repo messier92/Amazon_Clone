@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './Payment.css';
 import {useStateValue} from '../../StateProvider';
 import CheckoutProduct from '../../components/CheckoutProduct/CheckoutProduct';
@@ -9,6 +9,7 @@ import {getBasketTotal} from '../../reducer';
 import axios from './axios';
 
 function Payment() {
+    const navigate = useNavigate();
     const [{basket, user}, dispatch] = useStateValue();
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
@@ -32,11 +33,24 @@ function Payment() {
         getClientSecret();
     }, [basket])
 
+    console.log("Secret is", clientSecret);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setProcessing(true);
 
-        const payload = await stripe
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)
+            }
+        }).then(({paymentIntent}) => {
+            // paymentIntent = payment confirmation
+            setSucceeded(true);
+            setError(null);
+            setProcessing(false);
+
+            navigate('/orders');
+        })
     }
 
     const handleChange = event => {
