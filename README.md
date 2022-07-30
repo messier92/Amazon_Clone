@@ -36,3 +36,10 @@ https://stackoverflow.com/questions/62861269/attempted-import-error-usehistory-i
 6. To upload to Firebase for auth/db/hosting:
 a. Download a compatible version of firebase with node.js (npm install -g firebase-tools@10.9.2)
 b. Login to firebase via the terminal via "firebase login"
+
+7. To start functions backend:
+a. Open the command line terminal and cd to Amazon_Clone\functions (do this through the Windows terminal, not VS Code) 
+b. Start the backend by typing "firebase emulators:start"
+
+8. To transfer node_modules:
+npm i package-lock

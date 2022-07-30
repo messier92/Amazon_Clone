@@ -1,6 +1,8 @@
-import { initializeApp } from "firebase/app";
+// https://stackoverflow.com/questions/72369451/cannot-read-properties-of-undefined-reading-firestore
 import { getAuth } from "firebase/auth";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -13,7 +15,9 @@ const firebaseConfig = {
   measurementId: "G-K4FHBMYRTE"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+const db = firebaseApp.firestore();
 const auth = getAuth(firebaseApp);
 
-export { auth };
+export { db, auth };

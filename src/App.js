@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage/LandingPage.js";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
 import PaymentPage from "./pages/PaymentPage/PaymentPage.js";
+import OrdersPage from "./pages/OrdersPage/OrdersPage.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {auth} from './firebase';
 import {useStateValue} from "./StateProvider";
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/checkout" element={<CheckoutPage />} />
           <Route exact path="/payment" element={<PaymentPage />} />
+          <Route exact path="/orders" element={<OrdersPage />} />
         </Routes>
       </div>
     </Router>
