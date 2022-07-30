@@ -43,3 +43,15 @@ b. Start the backend by typing "firebase emulators:start"
 
 8. To transfer node_modules:
 npm i package-lock
+
+9. To allow external APIs, need to upgrade from 'Spark' to 'Blaze' plan
+
+10. CORS Access-Control-Allow-Origin error resolved in the server
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
+
+11. To successfully import firebase auth and firebase db:
+https://stackoverflow.com/questions/72369451/cannot-read-properties-of-undefined-reading-firestore

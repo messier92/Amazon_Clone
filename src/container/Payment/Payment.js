@@ -1,3 +1,5 @@
+// use 4242 4242 4242 4242, 04/24, 242, 42222
+
 import React, { useState, useEffect } from 'react';
 import './Payment.css';
 import { useStateValue } from "../../StateProvider";
@@ -37,10 +39,8 @@ function Payment() {
     }, [basket])
 
     console.log('THE SECRET IS >>>', clientSecret)
-    console.log('👱', user)
 
     const handleSubmit = async (event) => {
-        // do all the fancy stripe stuff...
         event.preventDefault();
         setProcessing(true);
 
@@ -49,8 +49,6 @@ function Payment() {
                 card: elements.getElement(CardElement)
             }
         }).then(({ paymentIntent }) => {
-            // paymentIntent = payment confirmation
-
             db
               .collection('users')
               .doc(user?.uid)
@@ -66,11 +64,11 @@ function Payment() {
             setError(null)
             setProcessing(false)
 
-            dispatch({
-                type: 'EMPTY_BASKET'
-            })
+            //dispatch({
+            //    type: 'EMPTY_BASKET'
+            //})
 
-            navigate('/orders');
+            navigate('/orders')
         })
 
     }
