@@ -55,3 +55,20 @@ const corsOptions ={
 
 11. To successfully import firebase auth and firebase db:
 https://stackoverflow.com/questions/72369451/cannot-read-properties-of-undefined-reading-firestore
+
+12. FOR DEPLOYMENT:
+a. To deploy 'functions' backend, open the cmd in the 'functions' directory and run the command "firebase deploy --only functions" 
+- Ensure that firebase.json "predeploy" is blank or like the following:
+
+"functions": {
+  "predeploy": [
+      "npm --prefix \"%RESOURCE_DIR%\" run lint",
+      "npm --prefix \"%RESOURCE_DIR%\" run build"
+    ]
+
+https://stackoverflow.com/questions/48345315/error-deploying-with-firebase-on-npm-prefix-resource-dir-run-lint
+
+b. To deploy frontend, open the cmd in the 'Amazon_Clone' directory and
+run the command "npm run build"
+
+then, run "firebase deploy --only hosting"
